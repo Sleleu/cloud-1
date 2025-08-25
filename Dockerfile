@@ -16,9 +16,11 @@ WORKDIR /home/${CONTROL_NODE}
 
 COPY --chown=${CONTROL_NODE}:${CONTROL_NODE} ./files files
 COPY --chown=${CONTROL_NODE}:${CONTROL_NODE} ./inventory inventory
+COPY --chown=${CONTROL_NODE}:${CONTROL_NODE} ./playbook playbook
 COPY --chown=${CONTROL_NODE}:${CONTROL_NODE} ansible.cfg .
 COPY --chown=${CONTROL_NODE}:${CONTROL_NODE} cloud1.pem .
 COPY --chown=${CONTROL_NODE}:${CONTROL_NODE} entrypoint.sh .
+COPY --chown=${CONTROL_NODE}:${CONTROL_NODE} .inception.env ./files/inception/srcs/.env
 
 EXPOSE 22
 

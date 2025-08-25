@@ -13,9 +13,9 @@ clean:
 fclean:
 
 	make clean
-	rm -rfd /home/sleleu/data/wordpress
-	rm -rfd /home/sleleu/data/mariadb
-	mkdir /home/sleleu/data/mariadb /home/sleleu/data/wordpress
+	rm -rfd /home/ec2-user/data/wordpress
+	rm -rfd /home/ec2-user/data/mariadb
+	mkdir /home/ec2-user/data/mariadb /home/ec2-user/data/wordpress
 
 re:
 	make fclean 

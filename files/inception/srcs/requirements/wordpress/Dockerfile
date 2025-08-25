@@ -1,9 +1,9 @@
-FROM debian:buster
+FROM debian:bookworm-20250811-slim
 
 RUN apt update -y && apt upgrade -y \
-&& apt install -y php7.3 \
-    php-fpm \
-    php-mysql \
+&& apt install -y php8.2 \
+    php8.2-fpm \
+    php8.2-mysql \
     mariadb-client \
     wget \
     curl \
@@ -13,7 +13,7 @@ RUN apt update -y && apt upgrade -y \
 && tar -xzf wordpress-6.1.1-fr_FR.tar.gz \
 && rm wordpress-6.1.1-fr_FR.tar.gz
 
-COPY /conf/www.conf /etc/php/7.3/fpm/pool.d/
+COPY /conf/www.conf /etc/php/8.2/fpm/pool.d/
 COPY /conf/wp-config.php /var/www/html/wordpress/wp-config.php
 COPY /conf/script.sh /script.sh
 
@@ -23,4 +23,4 @@ EXPOSE 9000
 
 ENTRYPOINT ["/script.sh"]
 
-CMD ["/usr/sbin/php-fpm7.3", "--nodaemonize"]
+CMD ["/usr/sbin/php8.2-fpm", "--nodaemonize"]

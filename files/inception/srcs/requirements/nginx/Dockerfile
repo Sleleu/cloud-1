@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:bookworm-20250811-slim
 
 RUN apt update -y && apt upgrade -y \
 && apt install -y nginx \

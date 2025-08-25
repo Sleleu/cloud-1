@@ -4,7 +4,7 @@ chown -R www-data:www-data /var/www/html/*
 chmod -R 755 /var/www/html/*
 
 mkdir -p /run/php/
-touch /run/php/php7.3-fpm.pid
+touch /run/php/php8.2-fpm.pid
 
 # Wait for the database
 sleep 10

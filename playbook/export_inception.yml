@@ -1,0 +1,9 @@
+- hosts: all
+  tasks:
+    - name: Copy inception files on ec2 instances
+      ansible.builtin.copy:
+        src: ~/files/
+        dest: /home/ec2-user/
+        mode: '0755'
+        owner: ec2-user
+        group: ec2-user

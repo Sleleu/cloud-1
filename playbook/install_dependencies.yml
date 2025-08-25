@@ -1,0 +1,39 @@
+- name: Install dependencies
+  hosts: all
+  become: true
+  tasks:
+    - name: Install make, ca-certificates
+      ansible.builtin.package:
+        name:
+          - ca-certificates
+          - make
+        state: present
+
+    - name: Install Docker
+      ansible.builtin.package:
+        name: docker-25.0.8
+        state: present
+
+    - name: Start and enable Docker service
+      ansible.builtin.service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Add ansible user to Docker
+      ansible.builtin.user:
+        name: "{{ ansible_user }}"
+        groups: docker
+        append: yes
+
+    - name: Create docker CLI directory
+      ansible.builtin.file:
+        path: "/usr/local/lib/docker/cli-plugins"
+        state: directory
+        mode: '0755'
+
+    - name: Download docker compose plugin
+      ansible.builtin.get_url:
+        url: "https://github.com/docker/compose/releases/download/v2.39.2/docker-compose-linux-{{ ansible_architecture }}"
+        dest: "/usr/local/lib/docker/cli-plugins/docker-compose"
+        mode: '0755'
