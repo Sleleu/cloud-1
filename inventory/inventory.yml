@@ -1,5 +1,0 @@
-all:
-  children:
-    app:
-      hosts:
-        app1:
