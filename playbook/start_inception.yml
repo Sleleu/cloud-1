@@ -1,4 +1,5 @@
 - hosts: all
+  become: true
   tasks:
 
     - name: Create directories 'mariadb' and 'wordpress'
@@ -12,6 +13,20 @@
         - /home/ubuntu/data/mariadb
         - /home/ubuntu/data/wordpress
     
+    - name: Get aws public DNS
+      set_fact:
+        site_url: "{{ hostvars[inventory_hostname].public_dns_name }}"
+
+    - name: Debug DNS
+      debug:
+        msg: "Instance {{ inventory_hostname }} → SITE_URL={{ site_url }}"
+
+    - name: change 'SITE_URL' in inception .env file
+      lineinfile:
+        path: "/home/ubuntu/inception/srcs/.env"
+        regexp: '^SITE_URL='
+        line: "SITE_URL={{ site_url }}"
+
     - name: Start inception makefile
       ansible.builtin.shell:
         cmd: make
