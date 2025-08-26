@@ -51,7 +51,7 @@ volumes:
     driver_opts:
       type: bind
       o: bind
-      device: /home/ec2-user/data/wordpress
+      device: /home/ubuntu/data/wordpress
 
   mariadb:
     name: mariadb
@@ -59,4 +59,4 @@ volumes:
     driver_opts:
       type: bind
       o: bind
-      device: /home/ec2-user/data/mariadb
+      device: /home/ubuntu/data/mariadb

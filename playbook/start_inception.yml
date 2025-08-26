@@ -1,0 +1,18 @@
+- hosts: all
+  tasks:
+
+    - name: Create directories 'mariadb' and 'wordpress'
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: ubuntu
+        group: ubuntu
+        mode: '0755'
+      loop:
+        - /home/ubuntu/data/mariadb
+        - /home/ubuntu/data/wordpress
+    
+    - name: Start inception makefile
+      ansible.builtin.shell:
+        cmd: make
+        chdir: /home/ubuntu/inception

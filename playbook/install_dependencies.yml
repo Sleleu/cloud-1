@@ -7,12 +7,25 @@
         name:
           - ca-certificates
           - make
+          - apt-transport-https
+          - curl
+        state: present
+    
+    - name: Add docker GPG apt key
+      ansible.builtin.apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
         state: present
 
-    - name: Install Docker
-      ansible.builtin.package:
-        name: docker-25.0.8
+    - name: Add docker repository
+      ansible.builtin.apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu focal stable
         state: present
+    
+    - name: Update apt and install docker-certificates
+      ansible.builtin.apt:
+        name: docker-ce
+        state: latest
+        update_cache: true
 
     - name: Start and enable Docker service
       ansible.builtin.service:

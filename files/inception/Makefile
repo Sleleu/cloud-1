@@ -13,9 +13,9 @@ clean:
 fclean:
 
 	make clean
-	rm -rfd /home/ec2-user/data/wordpress
-	rm -rfd /home/ec2-user/data/mariadb
-	mkdir /home/ec2-user/data/mariadb /home/ec2-user/data/wordpress
+	rm -rfd /home/ubuntu/data/wordpress
+	rm -rfd /home/ubuntu/data/mariadb
+	mkdir /home/ubuntu/data/mariadb /home/ubuntu/data/wordpress
 
 re:
 	make fclean 

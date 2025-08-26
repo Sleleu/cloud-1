@@ -23,4 +23,4 @@ EXPOSE 9000
 
 ENTRYPOINT ["/script.sh"]
 
-CMD ["/usr/sbin/php8.2-fpm", "--nodaemonize"]
+CMD ["/usr/sbin/php-fpm8.2", "--nodaemonize"]
