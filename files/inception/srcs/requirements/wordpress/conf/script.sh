@@ -23,5 +23,9 @@ wp core install \
     --admin_email=${WP_ADMIN_EMAIL}
 wp user create ${WP_USER} ${WP_EMAIL} --allow-root --user_pass=${WP_PASSWORD}
 
+# in case DNS is changing
+wp option update siteurl "http://${SITE_URL}" --allow-root
+wp option update home "http://${SITE_URL}" --allow-root
+
 
 exec "$@"

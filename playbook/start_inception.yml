@@ -29,5 +29,5 @@
 
     - name: Start inception makefile
       ansible.builtin.shell:
-        cmd: make
+        cmd: make clean && make
         chdir: /home/ubuntu/inception
